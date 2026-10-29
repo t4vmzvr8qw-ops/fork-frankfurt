@@ -36,3 +36,10 @@ Persönliche Daten werden im lokalen Browser-Speicher gespeichert (bei Bildern I
 - Responsiv für iPhone und Desktop, Hell-/Dunkelmodus, PWA-Manifest und Service Worker
 - API-/Netzwerkzugriff erforderlich für aktuelle Feeds und externe Karten/Wetter
 - **Prototypen:** vor produktivem Einsatz oder Veröffentlichung mit echten Daten bitte weitere Tests durchführen
+
+## Fork Frankfurt v3 – Restaurantquellen & Karte
+- Unter **Entdecken** erscheinen 25 aktuell im Guide MICHELIN Frankfurt gelistete Restaurants (ohne falsche Stern- oder Qualitätsbewertungen). Die Quelle ist verlinkt. Die übrigen Einträge stammen aus OpenStreetMap und sind nicht automatisch Empfehlungen.
+- In **Karte** kann die Karte nach Zustimmung auf den eigenen GPS-Standort zentriert werden; alternativ Adresse oder Stadtteil in Frankfurt suchen. GPS-Standort wird nicht gespeichert. Browser-Standort benötigt HTTPS (GitHub Pages funktioniert).
+- `.github/workflows/refresh-restaurants.yml` lädt zweimal wöchentlich OSM-Daten für das größere Frankfurter Stadtgebiet in `data/restaurants.json`. Unter **Actions → Refresh Frankfurt restaurants → Run workflow** beim ersten Mal manuell ausführen; Workflow benötigt Schreibrechte für Repository-Inhalte (Settings → Actions → General → Workflow permissions: Read and write permissions).
+- GitHub Pages kann weiterhin über **Deploy from a branch** betrieben werden. Der Workflow aktualisiert die Daten im Branch und Pages veröffentlicht nach Commit entsprechend der Pages-Einstellung. Bei Ausfall der OSM-API bleiben die zuletzt gespeicherten Daten erhalten.
+- Leere `data/restaurants.json` bei der allerersten Installation ist nur ein Platzhalter, bis die Action zum ersten Mal erfolgreich war. Die App versucht dann weiterhin einen direkten API-Abruf und zeigt die MICHELIN-Liste an.
